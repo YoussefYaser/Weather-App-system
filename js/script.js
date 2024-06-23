@@ -38,13 +38,14 @@ function showData(){
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     for(var i=0; i<3; i++){
-        var myDate = new Date(myCity.location.localtime);
+        var myDate = new Date(myCity.forecast.forecastday[0].date);
+        
         if(i===0){
             header[0].children[0].innerHTML = days[myDate.getDay()];   // day name
             header[0].children[1].innerHTML = myDate.getDate() + months[myDate.getMonth()];  //day num with month
             content[0].children[0].innerHTML = myCity.location.name; //city name or location
             content[0].children[1].children[0].innerHTML = '<span style="transform: translateY(-30px);">o</span>C';
-            content[0].children[1].children[0].prepend(myCity.forecast.forecastday[0].day["maxtemp_c"]); // max temp
+            content[0].children[1].children[0].prepend(myCity.current["temp_c"]); //  temp
             content[0].children[1].children[1].src = myCity.current.condition.icon; // weather photo condition
             content[0].children[2].innerHTML = myCity.current.condition.text; // weather condition
             content[0].children[3].children[0].children[1].innerHTML =  myCity.forecast.forecastday[0].day["daily_chance_of_rain"] + '%';
@@ -52,7 +53,8 @@ function showData(){
             content[0].children[3].children[2].children[1].innerHTML =  myCity.current["wind_dir"] ;
         }
         else{
-            header[i].innerHTML = days[myDate.getDay()+i]; //day name
+            let next = (myDate.getDay() + i) % 7;
+            header[i].innerHTML = days[next]; //day name
             content[i].children[0].src = myCity.forecast.forecastday[i].day.condition.icon;  // weather photo condition
             content[i].children[1].innerHTML= '<span style="transform: translateY(-10px);">o</span>C'
             content[i].children[1].prepend(myCity.forecast.forecastday[i].day["maxtemp_c"]); // max temp 

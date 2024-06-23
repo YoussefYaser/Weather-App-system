@@ -1,0 +1,1 @@
+https://api.weatherapi.com/v1/forecast.json?key=3fadd93a1fa947b9a10151450241806&q=cairo&days=3
