@@ -191,9 +191,11 @@
 /* START MAIN */
 
 .page main{
+    min-height: calc(100vh - 156px - 266px);
     background-image: url('../images/banner.png'),
     linear-gradient(#1E202B, #1E202B);
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .page .search{
